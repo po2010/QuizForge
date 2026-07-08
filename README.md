@@ -57,10 +57,9 @@ This is a static website. Deploy the project root to any static host.
 
 ### GitHub Pages
 
-- Push the files to a GitHub repository.
 - Go to repository Settings -> Pages.
 - Under Source, choose GitHub Actions.
-- Push to `main` or `master`.
+- Re-run the failed workflow from the Actions tab, or push a new commit.
 - The included workflow at `.github/workflows/pages.yml` will publish the site automatically.
 
 If you prefer the simpler branch deploy method, choose "Deploy from a branch" in Settings -> Pages, then select the root folder of `main` or `master`.
