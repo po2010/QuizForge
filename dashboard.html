@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | QuizForge</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="dashboard" data-protected="true">
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="brand-mark">Q</span><span>QuizForge</span></a>
+      <button class="nav-toggle" type="button" data-nav-toggle>Menu</button>
+      <nav class="site-nav" data-nav>
+        <a href="index.html">Discover</a>
+        <a href="create.html">Create</a>
+        <a href="my-quizzes.html">My quizzes</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="login.html" data-auth-link>Login</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-title">
+        <span class="eyebrow">Dashboard</span>
+        <h1>Welcome, <span data-user-name>creator</span>.</h1>
+        <p>Track what you created and attempted from this browser.</p>
+      </section>
+
+      <section class="metric-grid">
+        <article><strong data-dashboard-stat="created">0</strong><span>created quizzes</span></article>
+        <article><strong data-dashboard-stat="attempts">0</strong><span>attempts made</span></article>
+        <article><strong data-dashboard-stat="public">0</strong><span>public quizzes</span></article>
+        <article><strong data-dashboard-stat="private">0</strong><span>private rooms</span></article>
+      </section>
+
+      <section class="content-grid">
+        <div class="panel">
+          <div class="section-heading">
+            <span class="eyebrow">Quick actions</span>
+            <h2>Build and share</h2>
+          </div>
+          <div class="action-list">
+            <a class="button primary" href="create.html">Create quiz</a>
+            <a class="button secondary" href="my-quizzes.html">Manage quizzes</a>
+            <a class="button secondary" href="index.html">Attempt quizzes</a>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="section-heading">
+            <span class="eyebrow">Recent attempts</span>
+            <h2>Your activity</h2>
+          </div>
+          <div class="list-stack" id="recent-attempts"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Quizzes | QuizForge</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="my-quizzes" data-protected="true">
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="brand-mark">Q</span><span>QuizForge</span></a>
+      <button class="nav-toggle" type="button" data-nav-toggle>Menu</button>
+      <nav class="site-nav" data-nav>
+        <a href="index.html">Discover</a>
+        <a href="create.html">Create</a>
+        <a href="my-quizzes.html">My quizzes</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="login.html" data-auth-link>Login</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-title">
+        <span class="eyebrow">Creator area</span>
+        <h1>My quizzes</h1>
+        <p>View, share, and inspect leaderboards for quizzes you published.</p>
+      </section>
+      <section class="quiz-grid" id="my-quiz-list"></section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

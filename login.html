@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | QuizForge</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="login">
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="brand-mark">Q</span><span>QuizForge</span></a>
+      <nav class="site-nav always"><a href="index.html">Discover</a><a href="register.html">Register</a></nav>
+    </header>
+
+    <main class="auth-shell">
+      <section class="auth-card">
+        <span class="eyebrow">Welcome back</span>
+        <h1>Login to continue</h1>
+        <form class="form-stack" id="login-form">
+          <label>Email <input name="email" type="email" required autocomplete="email" /></label>
+          <label>Password <input name="password" type="password" required autocomplete="current-password" /></label>
+          <button class="button primary" type="submit">Login</button>
+          <p class="form-note">No account yet? <a href="register.html">Create one</a>.</p>
+          <p class="status-message" data-status></p>
+        </form>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

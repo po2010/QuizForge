@@ -1,0 +1,19 @@
+{
+  "name": "quizforge-static-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A deploy-ready multi-page quiz website built with HTML, CSS, and JavaScript.",
+  "scripts": {
+    "start": "python -m http.server 4173",
+    "check": "node --check script.js",
+    "build": "node -e \"console.log('Static site ready: deploy the project root.')\""
+  },
+  "keywords": [
+    "quiz",
+    "static-site",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "license": "MIT"
+}
