@@ -38,8 +38,10 @@ const quizSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-function toPublicJSON(quiz) {
+function toPublicJSON(quiz, options = {}) {
   const doc = quiz.toObject ? quiz.toObject() : quiz;
+  const includeAnswers = options.includeAnswers === true;
+
   return {
     id: doc._id,
     title: doc.title,
@@ -52,6 +54,7 @@ function toPublicJSON(quiz) {
     creatorName: doc.creatorName,
     createdAt: doc.createdAt,
     questions: (doc.questions || []).map((q) => {
+      if (includeAnswers) return q;
       const { correct, ...rest } = q;
       return rest;
     }),
@@ -59,12 +62,12 @@ function toPublicJSON(quiz) {
   };
 }
 
-quizSchema.methods.toPublicJSON = function () {
-  return toPublicJSON(this);
+quizSchema.methods.toPublicJSON = function (options) {
+  return toPublicJSON(this, options);
 };
 
-quizSchema.statics.toPublicJSON = function (quiz) {
-  return toPublicJSON(quiz);
+quizSchema.statics.toPublicJSON = function (quiz, options) {
+  return toPublicJSON(quiz, options);
 };
 
 export default mongoose.model("Quiz", quizSchema);

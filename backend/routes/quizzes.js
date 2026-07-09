@@ -83,7 +83,7 @@ router.get("/:id", async (req, res) => {
     if (!quiz) {
       return res.status(404).json({ error: "Quiz not found." });
     }
-    res.json({ quiz: quiz.toPublicJSON() });
+    res.json({ quiz: quiz.toPublicJSON({ includeAnswers: true }) });
   } catch (err) {
     console.error("Get quiz error:", err);
     res.status(500).json({ error: "Server error fetching quiz." });
