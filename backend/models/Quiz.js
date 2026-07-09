@@ -48,7 +48,7 @@ function toPublicJSON(quiz) {
     visibility: doc.visibility,
     ...(doc.visibility === "private" && { roomCode: doc.roomCode }),
     timer: doc.timer,
-    creatorId: doc.creatorId,
+    creatorId: String(doc.creatorId),
     creatorName: doc.creatorName,
     createdAt: doc.createdAt,
     questions: (doc.questions || []).map((q) => {

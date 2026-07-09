@@ -61,6 +61,21 @@ router.get("/stats", async (req, res) => {
   }
 });
 
+// GET /api/quizzes/my/all — get current user's quizzes (auth required)
+// MUST be placed before /:id to avoid route conflict
+router.get("/my/all", auth, async (req, res) => {
+  try {
+    const quizzes = await Quiz.find({ creatorId: req.user._id })
+      .sort({ createdAt: -1 })
+      .lean();
+
+    res.json({ quizzes: quizzes.map((q) => Quiz.toPublicJSON(q)) });
+  } catch (err) {
+    console.error("Get my quizzes error:", err);
+    res.status(500).json({ error: "Server error fetching your quizzes." });
+  }
+});
+
 // GET /api/quizzes/:id — get a single quiz by ID
 router.get("/:id", async (req, res) => {
   try {
@@ -132,20 +147,6 @@ router.post("/", auth, async (req, res) => {
   } catch (err) {
     console.error("Create quiz error:", err);
     res.status(500).json({ error: "Server error creating quiz." });
-  }
-});
-
-// GET /api/quizzes/my/all — get current user's quizzes (auth required)
-router.get("/my/all", auth, async (req, res) => {
-  try {
-    const quizzes = await Quiz.find({ creatorId: req.user._id })
-      .sort({ createdAt: -1 })
-      .lean();
-
-    res.json({ quizzes: quizzes.map((q) => Quiz.toPublicJSON(q)) });
-  } catch (err) {
-    console.error("Get my quizzes error:", err);
-    res.status(500).json({ error: "Server error fetching your quizzes." });
   }
 });
 

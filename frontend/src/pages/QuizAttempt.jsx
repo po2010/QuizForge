@@ -1,11 +1,9 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { getQuiz, submitAttempt } from "../api";
-import { useAuth } from "../context/AuthContext";
 
 export default function QuizAttempt() {
   const [searchParams] = useSearchParams();
-  const { user } = useAuth();
   const quizId = searchParams.get("id");
   const roomParam = searchParams.get("room");
 
@@ -26,6 +24,7 @@ export default function QuizAttempt() {
   const [feedback, setFeedback] = useState("");
   const [feedbackType, setFeedbackType] = useState("");
   const [finished, setFinished] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState("");
   const [result, setResult] = useState(null);
   const timerRef = useRef(null);
 
@@ -87,6 +86,7 @@ export default function QuizAttempt() {
     if (answered) return;
     clearInterval(timerRef.current);
     setAnswered(true);
+    setSelectedAnswer(answer);
 
     const question = quiz.questions[index];
     const correct = answer.trim().toLowerCase() === question.correct.trim().toLowerCase();
@@ -216,17 +216,26 @@ export default function QuizAttempt() {
               </button>
             </>
           ) : (
-            question.options.map((option) => (
-              <button
-                key={option}
-                className="answer-button"
-                type="button"
-                disabled={answered}
-                onClick={(e) => handleGrade(option, e.currentTarget)}
-              >
-                {option}
-              </button>
-            ))
+            question.options.map((option) => {
+              let btnClass = "answer-button";
+              if (answered) {
+                const isCorrect = option.trim().toLowerCase() === question.correct.trim().toLowerCase();
+                const isSelected = option === selectedAnswer;
+                if (isCorrect) btnClass += " correct";
+                if (isSelected && !isCorrect) btnClass += " wrong";
+              }
+              return (
+                <button
+                  key={option}
+                  className={btnClass}
+                  type="button"
+                  disabled={answered}
+                  onClick={(e) => handleGrade(option, e.currentTarget)}
+                >
+                  {option}
+                </button>
+              );
+            })
           )}
         </div>
         {feedback && (
