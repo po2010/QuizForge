@@ -1,4 +1,4 @@
-const API = `${import.meta.env.VITE_API_BASE_URL}api`;
+const API = `${import.meta.env.VITE_API_BASE_URL}/api`;
 
 function getToken() {
   return localStorage.getItem("quizforge_token");
