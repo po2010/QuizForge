@@ -1,4 +1,4 @@
-name: Deploy Frontend to GitHub Pages
+name: Deploy Vite React App to GitHub Pages
 
 on:
   push:
@@ -24,13 +24,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: './frontend/package.json' # Adjust if package.json is in root
+
+      - name: Install dependencies and build
+        run: |
+          cd frontend          # Navigate to your Vite project directory
+          npm install          # Install packages
+          npm run build        # Compiles React into a 'dist' folder
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './frontend' # This targets your subfolder!
+          path: './frontend/dist' # 👈 Deploys the newly compiled production files!
 
       - name: Deploy to GitHub Pages
         id: deployment
